@@ -1,0 +1,13 @@
+# Files git should ignore (not save)
+
+# Personal Claude Code settings on this computer
+.claude/settings.local.json
+
+# Junk files Windows and Mac create on their own
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editor folders
+.vscode/
+.idea/

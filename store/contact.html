@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact us — ShopEasy</title>
+  <meta name="description" content="Get help with your ShopEasy order on WhatsApp or email.">
+  <meta name="theme-color" content="#0f1b2d">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page">
+  <div id="siteTop"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="page-kicker">Contact us</p>
+      <h1>We’re here to <span>help.</span></h1>
+      <p>Questions about a product, an order or a return? Message us and a real person will reply.</p>
+    </div>
+  </section>
+
+  <main class="container page-main">
+    <div class="contact-grid">
+      <div class="contact-card">
+        <b>WhatsApp</b>
+        <p><span data-info="whatsapp"></span></p>
+        <small>Fastest way to reach us</small>
+      </div>
+      <div class="contact-card">
+        <b>Email</b>
+        <p><a data-info="email"></a></p>
+        <small>We reply within one working day</small>
+      </div>
+      <div class="contact-card">
+        <b>Support hours</b>
+        <p><span data-info="hours"></span></p>
+        <small>Messages outside these hours are answered next working day</small>
+      </div>
+      <div class="contact-card">
+        <b>Address</b>
+        <p><span data-info="address"></span></p>
+        <small><span data-info="legalName"></span></small>
+      </div>
+    </div>
+
+    <article class="page-card">
+      <h2>Send us a message</h2>
+      <p>Fill this in and tap Send. WhatsApp will open with your message ready to send to us.</p>
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="row">
+          <div class="field"><label for="cName">Your name</label><input id="cName" name="cName" autocomplete="name"></div>
+          <div class="field"><label for="cOrder">Order ID (optional)</label><input id="cOrder" name="cOrder" placeholder="e.g. SE12345678"></div>
+        </div>
+        <div class="field"><label for="cMsg">How can we help?</label><textarea id="cMsg" name="cMsg" rows="5" placeholder="Tell us what you need help with…"></textarea></div>
+        <small class="form-error" id="cError" role="alert"></small>
+        <button class="btn btn-wa" type="submit">Send on WhatsApp</button>
+      </form>
+
+      <h2>Grievance officer</h2>
+      <p>If you’re not happy with how a complaint was handled, you can contact our grievance officer. We acknowledge every complaint within 48 hours and aim to resolve it within one month.</p>
+      <dl class="info-list">
+        <div><dt>Name</dt><dd><span data-info="grievanceOfficer"></span></dd></div>
+        <div><dt>Email</dt><dd><span data-info="grievanceEmail"></span></dd></div>
+        <div><dt>Address</dt><dd><span data-info="address"></span></dd></div>
+      </dl>
+
+      <h2>Quick answers</h2>
+      <ul>
+        <li>Where’s my order? Check <a href="index.html?open=orders">My Orders</a> for its status and expected delivery date.</li>
+        <li>Want to return something? See our <a href="returns.html">Returns &amp; refunds policy</a>.</li>
+        <li>Delivery times and charges are in our <a href="shipping.html">Shipping policy</a>.</li>
+      </ul>
+    </article>
+  </main>
+
+  <div id="siteFooter"></div>
+  <script src="products.js"></script>
+  <script src="pages.js"></script>
+</body>
+</html>

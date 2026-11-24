@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipping policy — ShopEasy</title>
+  <meta name="description" content="Delivery times, charges and Cash on Delivery at ShopEasy.">
+  <meta name="theme-color" content="#0f1b2d">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page">
+  <div id="siteTop"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="page-kicker">Shipping policy</p>
+      <h1>Delivery, <span>made simple.</span></h1>
+      <p>Last updated: <span data-info="lastUpdated"></span></p>
+    </div>
+  </section>
+
+  <main class="container page-main">
+    <article class="page-card">
+      <h2>Delivery charges</h2>
+      <ul>
+        <li><b>Free delivery</b> on orders above <span data-info="freeAbove"></span>.</li>
+        <li>Orders below that have a delivery charge of <span data-info="deliveryFee"></span>, shown before you pay.</li>
+        <li>Coupons like <b>FREESHIP</b> can make delivery free on any order.</li>
+      </ul>
+
+      <h2>How long delivery takes</h2>
+      <table class="policy-table">
+        <thead><tr><th>Category</th><th>Usual delivery time</th></tr></thead>
+        <tbody>
+          <tr><td>Groceries</td><td><span data-info="daysGrocery"></span></td></tr>
+          <tr><td>Beauty</td><td><span data-info="daysBeauty"></span></td></tr>
+          <tr><td>Home &amp; Kitchen</td><td><span data-info="daysHome"></span></td></tr>
+          <tr><td>Electronics, Fashion, Books, Sports, Toys</td><td><span data-info="daysOther"></span></td></tr>
+        </tbody>
+      </table>
+      <p>Every product page shows its expected delivery date before you buy. Orders are usually packed within one working day. Deliveries may take longer during festivals, bad weather or other events outside our control. If that happens, we’ll keep you updated.</p>
+
+      <h2>Cash on Delivery</h2>
+      <p>Cash on Delivery is available. Please keep the exact amount ready, or pay by UPI to the delivery partner if they offer it.</p>
+
+      <h2>Tracking your order</h2>
+      <p>You can see your order’s progress (Ordered, Packed, Shipped, Out for delivery, Delivered) in <a href="index.html?open=orders">My Orders</a>. For anything urgent, message us on WhatsApp at <span data-info="whatsapp"></span>.</p>
+
+      <h2>If we can’t deliver</h2>
+      <p>Our delivery partner will try to contact you if they can’t find the address or nobody is available. Please make sure your phone number and address are correct. If an order can’t be delivered after repeated attempts, it’s returned to us and any amount paid is refunded as described in our <a href="returns.html">Returns &amp; refunds policy</a>.</p>
+
+      <h2>Where we deliver</h2>
+      <p>We deliver to most PIN codes in India. If we can’t deliver to your PIN code, we’ll let you know and refund any amount paid.</p>
+
+      <h2>Questions?</h2>
+      <p>Visit our <a href="contact.html">Contact page</a> or WhatsApp us at <span data-info="whatsapp"></span>.</p>
+    </article>
+  </main>
+
+  <div id="siteFooter"></div>
+  <script src="products.js"></script>
+  <script src="pages.js"></script>
+</body>
+</html>

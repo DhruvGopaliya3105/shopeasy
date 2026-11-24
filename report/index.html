@@ -1,0 +1,428 @@
+<title>ShopEasy Build Report</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap">
+<style>
+  /* Layout: a single reading column (report) with wide screenshot galleries, in ShopEasy's own navy & gold identity */
+  :root {
+    --bg: #f6f5f1;
+    --surface: #ffffff;
+    --ink: #13203a;
+    --muted: #5c6577;
+    --line: #e5e3dc;
+    --navy: #0f1b2d;
+    --navy-2: #1b2d4a;
+    --gold: #c9a050;
+    --gold-ink: #8a6a24;
+    --gold-soft: #f3ead6;
+    --ok: #1d7f58;
+    --ok-soft: #e3f4ec;
+    --warn: #8a5a00;
+    --warn-soft: #fff3d6;
+    --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1320; --surface: #121d2e; --ink: #eef1f6; --muted: #9ba5b8; --line: #23324a;
+      --navy: #070e19; --navy-2: #12213a; --gold: #d4ad5f; --gold-ink: #e2bf78; --gold-soft: #2a2416;
+      --ok: #5fd0a2; --ok-soft: #10301f; --warn: #ffd27a; --warn-soft: #3a2c0c; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1320; --surface: #121d2e; --ink: #eef1f6; --muted: #9ba5b8; --line: #23324a;
+    --navy: #070e19; --navy-2: #12213a; --gold: #d4ad5f; --gold-ink: #e2bf78; --gold-soft: #2a2416;
+    --ok: #5fd0a2; --ok-soft: #10301f; --warn: #ffd27a; --warn-soft: #3a2c0c; color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; margin: 0; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  h1, h2, h3 { font-family: var(--serif); line-height: 1.2; text-wrap: balance; margin: 0; font-variant-numeric: lining-nums; }
+  h2 { font-size: clamp(1.45rem, 3vw, 1.9rem); }
+  h3 { font-size: 1.15rem; }
+  p { margin: 0; }
+  .lede { max-width: 68ch; color: var(--muted); }
+  .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .74rem; font-weight: 700; color: var(--gold-ink); }
+
+  /* ----- Cover ----- */
+  .cover { background: linear-gradient(135deg, #0f1b2d 0%, #1b2d4a 70%, #24406e 100%); color: #fff; }
+  .cover .wrap { padding-block: 48px 40px; display: grid; gap: 18px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .mark { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(135deg, #d9b467, #b08533); color: #0f1b2d; font-family: var(--serif); font-weight: 700; }
+  .brand b { font-family: var(--serif); font-size: 1.4rem; }
+  .brand b span { color: #c9a050; }
+  .cover h1 { font-size: clamp(2rem, 5vw, 3rem); max-width: 18ch; }
+  .cover h1 span { color: #c9a050; }
+  .cover p { color: #c9d1de; max-width: 62ch; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: .9rem; color: #c9d1de; }
+  .meta b { color: #fff; font-weight: 600; }
+  .status { display: inline-flex; align-items: center; gap: 8px; width: fit-content; background: rgba(201, 160, 80, .16); border: 1px solid rgba(201, 160, 80, .5); color: #f0dfb8; border-radius: 999px; padding: 4px 12px; font-size: .85rem; font-weight: 600; }
+  .status i { width: 8px; height: 8px; border-radius: 50%; background: #c9a050; }
+
+  /* ----- Sections ----- */
+  main { padding-block: 8px 56px; }
+  section { padding-block: 40px 8px; display: grid; gap: 18px; }
+  .section-head { display: grid; gap: 6px; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-top: -26px; position: relative; }
+  .stat { padding: 18px 20px; display: grid; gap: 2px; }
+  .stat + .stat { border-left: 1px solid var(--line); }
+  .stat b { font-family: var(--serif); font-size: 2rem; line-height: 1.1; font-variant-numeric: lining-nums tabular-nums; }
+  .stat span { color: var(--muted); font-size: .88rem; }
+
+  .summary { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; align-items: start; }
+  .summary > * { min-width: 0; }
+  .box { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; display: grid; gap: 10px; }
+  .box ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+  .tag { display: inline-block; font-size: .72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; letter-spacing: .03em; }
+  .tag.done { background: var(--ok-soft); color: var(--ok); }
+  .tag.todo { background: var(--warn-soft); color: var(--warn); }
+
+  /* Phases: a real sequence, so numbered */
+  .phases { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-left: 2px solid var(--line); margin-left: 14px; }
+  .phase { position: relative; padding: 0 0 22px 28px; display: grid; gap: 6px; }
+  .phase::before { content: attr(data-n); position: absolute; left: -15px; top: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--navy); color: #c9a050; font-weight: 700; font-size: .8rem; display: grid; place-items: center; border: 2px solid var(--bg); font-variant-numeric: tabular-nums; }
+  .phase h3 { font-family: var(--sans); font-size: 1.02rem; font-weight: 700; }
+  .phase p { color: var(--muted); font-size: .95rem; max-width: 75ch; }
+
+  /* Screenshots */
+  .shots-desktop { display: grid; gap: 18px; }
+  .shots-phone { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  figure { margin: 0; display: grid; gap: 8px; align-content: start; }
+  figure img { width: 100%; max-width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); }
+  .shots-phone img { border-radius: 16px; }
+  figcaption { font-size: .86rem; color: var(--muted); line-height: 1.45; }
+  figcaption b { color: var(--ink); font-weight: 600; display: block; }
+  .group-title { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 18px; }
+  .group-title h3 { font-family: var(--serif); }
+  .group-title span { color: var(--muted); font-size: .9rem; }
+  .note { font-size: .85rem; color: var(--muted); }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: .93rem; min-width: 560px; }
+  th, td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  th { font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; background: var(--bg); }
+  td:first-child { font-weight: 600; }
+  code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .86em; background: var(--gold-soft); color: var(--gold-ink); padding: 1px 6px; border-radius: 4px; }
+
+  .flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+  .flow div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: grid; gap: 4px; align-content: start; }
+  .flow b { font-size: .92rem; }
+  .flow span { font-size: .84rem; color: var(--muted); }
+  .flow .who { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--gold-ink); }
+
+  footer { border-top: 1px solid var(--line); }
+  footer .wrap { padding-block: 22px 32px; color: var(--muted); font-size: .86rem; display: grid; gap: 4px; }
+
+  @media (max-width: 860px) {
+    .summary { grid-template-columns: 1fr; }
+    .shots-phone { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stat:nth-child(3) { border-left: 0; }
+    .stat:nth-child(n + 3) { border-top: 1px solid var(--line); }
+    .flow { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 420px) {
+    .stat b { font-size: 1.6rem; }
+    .shots-phone { gap: 10px; }
+  }
+  /* PDF / print: A4, keep colours, never split a screenshot, card or table row across pages */
+  @media print {
+    /* always print in the light colours, even if the computer is in dark mode */
+    :root, :root:not([data-theme="light"]), :root[data-theme="dark"] {
+      --bg: #f6f5f1; --surface: #ffffff; --ink: #13203a; --muted: #5c6577; --line: #e5e3dc;
+      --navy: #0f1b2d; --navy-2: #1b2d4a; --gold: #c9a050; --gold-ink: #8a6a24; --gold-soft: #f3ead6;
+      --ok: #1d7f58; --ok-soft: #e3f4ec; --warn: #8a5a00; --warn-soft: #fff3d6; color-scheme: light;
+    }
+    @page { size: A4; margin: 12mm 11mm; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { background: #ffffff; font-size: 10.5pt; }
+    .cover .wrap { padding-block: 26px 30px; }
+    main { padding-block: 0 10px; }
+    section { padding-block: 22px 4px; }
+    figure, .box, .stat, .phase, tr, .flow div, .stats { break-inside: avoid; }
+    h2, h3, .section-head, .group-title { break-after: avoid; }
+    .shots-phone { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .summary { grid-template-columns: 1fr 1fr; }
+    .flow { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .table-wrap { overflow: visible; }
+    table { min-width: 0; font-size: 9pt; }
+  }
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <div class="brand"><span class="mark">SE</span><b>Shop<span>Easy</span></b></div>
+    <p class="eyebrow" style="color:#c9a050">Project report</p>
+    <h1>An online store built for <span>Indian shoppers</span></h1>
+    <p>What was built, how it works, what was tested, and what is still needed before real customers use it.</p>
+    <div class="meta">
+      <span>Date: <b>23 November 2026</b></span>
+      <span>Built with: <b>HTML, CSS and JavaScript (no extra libraries)</b></span>
+      <span>Runs at: <b>localhost:8090/store/</b> (not online yet)</span>
+    </div>
+    <span class="status"><i></i>Working demo, ready for go-live preparation</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="stats" aria-label="Key numbers">
+    <div class="stat"><b>71</b><span>products in 8 categories</span></div>
+    <div class="stat"><b>40+</b><span>shopping features</span></div>
+    <div class="stat"><b>26</b><span>festival themes through 2027</span></div>
+    <div class="stat"><b>₹0</b><span>software cost so far</span></div>
+  </div>
+
+  <!-- ========== SUMMARY ========== -->
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Summary</p>
+      <h2>Where the project stands</h2>
+    </div>
+    <div class="summary">
+      <div class="box">
+        <h3>What's done <span class="tag done">DONE</span></h3>
+        <ul>
+          <li>A complete, professional-looking store (premium navy and gold design) that works on phones and computers, with a dark mode.</li>
+          <li>Full shopping flow: search, product pages, cart, coupons, checkout, order confirmation and order tracking.</li>
+          <li>Features made for Indian customers: Hinglish search, price bargaining (mol-bhav), Cash on Delivery, a simple Easy mode with Hindi labels.</li>
+          <li>Brand tagline <b>"Quality you can trust. Prices you'll love."</b> and <b>26 festival themes</b> (Guru Nanak Jayanti, Christmas, Holi, Eid, Raksha Bandhan, Navratri, Diwali and more) that switch on automatically on the right dates.</li>
+          <li>Orders reach the owner on WhatsApp (+91 99501 99227) or SMS, and customers get their receipt on their own mobile number.</li>
+          <li>About, Contact, Shipping, Returns, Privacy and Terms pages, plus a go-live checklist.</li>
+          <li>Tested in the browser at phone and desktop sizes; bugs found during testing were fixed.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Still needed before launch <span class="tag todo">TO DO</span></h3>
+        <ul>
+          <li><b>Real payments.</b> UPI and card are in test mode: the screen says "Payment successful" but no money is collected. Needs a Razorpay account (business KYC).</li>
+          <li><b>Order records.</b> Orders reach the owner only when the customer taps the WhatsApp or SMS button. There is no order database yet.</li>
+          <li><b>Real product photos</b> (emoji are placeholders) and real prices.</li>
+          <li><b>Business details</b> (legal name, address, GSTIN, grievance officer) and a legal review of the policy pages.</li>
+          <li><b>Hosting</b> on a real web address (free on Netlify).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SCREENSHOTS: DESIGN ========== -->
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Screenshots</p>
+      <h2>The finished store</h2>
+      <p class="lede">All screenshots were taken from the finished store on 23 November 2026. Names, numbers and orders shown are sample test data.</p>
+    </div>
+
+    <div class="group-title"><h3>On a computer</h3><span>Homepage, product page and contact page</span></div>
+    <div class="shots-desktop">
+      <figure><img src="img/d1-home-hero.jpg" alt="Homepage with offer bar, ShopEasy logo, search, the headline 'Quality you can trust. Prices you'll love.', a collage of popular products, trust badges and category tiles" loading="lazy">
+        <figcaption><b>Homepage</b>Offer bar, logo, search with voice, headline, a collage of popular products, trust badges and picture tiles for each category.</figcaption></figure>
+      <figure><img src="img/d2-categories-promos.jpg" alt="Category tiles, promo banners and Deal of the Day with countdown" loading="lazy">
+        <figcaption><b>Categories, offers and Deal of the Day</b>Promo banners open matching products. The deal changes daily and counts down to midnight.</figcaption></figure>
+      <figure><img src="img/d3-curated-rows.jpg" alt="Curated product rows: New arrivals and Top rated, with badges" loading="lazy">
+        <figcaption><b>Curated rows</b>New arrivals, Top rated, Biggest discounts and Under ₹499, with honest badges based on real ratings and discounts.</figcaption></figure>
+      <figure><img src="img/d4-product-page.jpg" alt="Product page for Silk Saree with price, savings, delivery date and buttons" loading="lazy">
+        <figcaption><b>Product page</b>Price and savings, key points, delivery date, Add to cart / Buy now, bargaining, wishlist and WhatsApp share. Every product has its own link.</figcaption></figure>
+    </div>
+
+    <div class="group-title"><h3>Shopping on a phone</h3><span>Most customers will shop this way</span></div>
+    <div class="shots-phone">
+      <figure><img src="img/m01-home.jpg" alt="Phone homepage" loading="lazy"><figcaption><b>Homepage</b>Bottom menu with Home, Search, Orders, Wishlist and Cart.</figcaption></figure>
+      <figure><img src="img/m02-categories-promos.jpg" alt="Phone categories and promos" loading="lazy"><figcaption><b>Categories and offers</b>Large picture tiles and promo banners.</figcaption></figure>
+      <figure><img src="img/m03-deal-price-tiles.jpg" alt="Deal of the Day and Shop by price tiles" loading="lazy"><figcaption><b>Shop by price</b>Under ₹199, ₹499, ₹999 and premium picks.</figcaption></figure>
+      <figure><img src="img/m04-hinglish-search.jpg" alt="Search for '500 ke andar t-shirt' showing T-shirts under ₹500" loading="lazy"><figcaption><b>Hinglish search</b>"500 ke andar t-shirt" finds T-shirts under ₹500. Typos are corrected too.</figcaption></figure>
+      <figure><img src="img/m05-gift-search.jpg" alt="Search for 'papa ke liye gift' showing gift ideas" loading="lazy"><figcaption><b>Gift search</b>"papa ke liye gift" suggests gifts for father.</figcaption></figure>
+      <figure><img src="img/m07-cart-coupon.jpg" alt="Cart with FIRST10 coupon applied" loading="lazy"><figcaption><b>Cart with coupon</b>Coupons, savings, free-delivery progress bar.</figcaption></figure>
+      <figure><img src="img/m13-wishlist.jpg" alt="Wishlist drawer" loading="lazy"><figcaption><b>Wishlist</b>Save items and move them to the cart later.</figcaption></figure>
+      <figure><img src="img/m15-dark-mode.jpg" alt="Store in dark mode" loading="lazy"><figcaption><b>Dark mode</b>The whole store has a matching dark theme.</figcaption></figure>
+    </div>
+
+    <div class="group-title"><h3>Checkout, orders and receipts</h3><span>What happens after a customer buys</span></div>
+    <div class="shots-phone">
+      <figure><img src="img/m08-payment-successful.jpg" alt="Payment successful screen with receipt" loading="lazy"><figcaption><b>Payment successful</b>Receipt with order ID, amount, payment and delivery date. (Test mode: no money is taken.)</figcaption></figure>
+      <figure><img src="img/m09-whatsapp-sms-buttons.jpg" alt="Buttons to get receipt on WhatsApp or SMS and send order to the store" loading="lazy"><figcaption><b>Receipts and order sending</b>Customer gets a receipt on their own WhatsApp or SMS; the order goes to the owner by WhatsApp or SMS.</figcaption></figure>
+      <figure><img src="img/m10-my-orders-tracking.jpg" alt="My Orders with savings piggy bank and tracking steps" loading="lazy"><figcaption><b>My Orders</b>Tracking steps, Buy again, resend by WhatsApp/SMS, and total savings.</figcaption></figure>
+      <figure><img src="img/m06-bargain.jpg" alt="Mol-bhav bargaining chat on a product page" loading="lazy"><figcaption><b>Mol-bhav (bargaining)</b>Customers make an offer; the shopkeeper replies in Hinglish. Capped at 3% off.</figcaption></figure>
+    </div>
+
+    <div class="group-title"><h3>Smart features</h3><span>Ideas to stand out from other stores</span></div>
+    <div class="shots-phone">
+      <figure><img src="img/m11-budget-basket.jpg" alt="Budget Basket filling a cart for ₹3,000 for a new flat" loading="lazy"><figcaption><b>Budget Basket</b>Enter a budget and occasion; the store fills a cart that fits.</figcaption></figure>
+      <figure><img src="img/m12-swipe.jpg" alt="Swipe to discover card" loading="lazy"><figcaption><b>Swipe to discover</b>Right to wishlist, left to skip, like a dating app for products.</figcaption></figure>
+      <figure><img src="img/m14-easy-mode.jpg" alt="Easy mode with large text and Hindi labels" loading="lazy"><figcaption><b>Easy mode</b>Bigger text, Hindi labels and read-aloud, for older customers.</figcaption></figure>
+      <figure><img src="img/m16-festival-diwali.jpg" alt="Festival mode preview for Diwali" loading="lazy"><figcaption><b>Festival mode</b>The store changes its look for Diwali, Holi, Rakhi and more. (Preview shown.)</figcaption></figure>
+    </div>
+
+    <div class="group-title"><h3>Policy and contact pages</h3><span>Needed for customer trust and payment providers</span></div>
+    <div class="shots-desktop">
+      <figure><img src="img/d5-contact-page.jpg" alt="Contact page with WhatsApp number, support hours and highlighted missing details" loading="lazy">
+        <figcaption><b>Contact page</b>Highlighted "[Add …]" notes show business details that still need to be filled in.</figcaption></figure>
+    </div>
+    <div class="shots-phone">
+      <figure><img src="img/m17-returns-policy.jpg" alt="Returns and refunds policy page" loading="lazy"><figcaption><b>Returns &amp; refunds</b>Return windows per category and refund times.</figcaption></figure>
+      <figure><img src="img/m18-contact.jpg" alt="Contact page on a phone" loading="lazy"><figcaption><b>Contact on a phone</b>Form opens WhatsApp with the customer's message.</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ========== BRAND & FESTIVALS ========== -->
+  <section id="festivals">
+    <div class="section-head">
+      <p class="eyebrow">Brand and festival offers</p>
+      <h2>Tagline and festival calendar</h2>
+      <p class="lede">The store has a clear brand line and changes its look for every major festival, with no manual work.</p>
+    </div>
+
+    <div class="summary">
+      <div class="box">
+        <h3>Tagline</h3>
+        <p style="font-family:var(--serif);font-size:1.5rem;line-height:1.3">Quality you can trust. <span style="color:var(--gold-ink)">Prices you'll love.</span></p>
+        <p class="note">Shown on the homepage, browser tab and WhatsApp share preview. It speaks to the two things every shopper cares about, and the store backs both up: ratings, quality-checked products and easy returns, plus real discounts, coupons and Deal of the Day.</p>
+      </div>
+      <div class="box">
+        <h3>How festival mode works</h3>
+        <ul>
+          <li>Turns on automatically a few days before each festival and ends the day after.</li>
+          <li>Each festival has its own colours, headline, a "days to go" countdown, matching gift picks and a greeting for the gift message (for example "Eid Mubarak!").</li>
+          <li>When two festivals overlap, the one coming up soonest is shown.</li>
+          <li>Guru Nanak Jayanti (24 Nov) is <b>live on the store today</b>.</li>
+          <li>These are <b>themes and gift picks, not discounts</b>. Festival coupon codes can be added next.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="shots-phone">
+      <figure><img src="img/fest-today-guru-nanak.jpg" alt="Store showing the Guru Nanak Jayanti theme today" loading="lazy"><figcaption><b>Live today: Guru Nanak Jayanti</b>Saffron theme with "Tomorrow!" countdown.</figcaption></figure>
+      <figure><img src="img/fest-preview-sankranti.jpg" alt="Lohri, Sankranti and Pongal theme" loading="lazy"><figcaption><b>Lohri, Sankranti &amp; Pongal</b>10–16 January 2027.</figcaption></figure>
+      <figure><img src="img/fest-preview-eid-fitr.jpg" alt="Eid al-Fitr theme" loading="lazy"><figcaption><b>Eid al-Fitr</b>7–11 March 2027 (date depends on moon sighting).</figcaption></figure>
+      <figure><img src="img/fest-preview-navratri.jpg" alt="Navratri and Dussehra theme" loading="lazy"><figcaption><b>Navratri &amp; Dussehra</b>29 September – 10 October 2027.</figcaption></figure>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Theme shows</th><th>Festival</th><th>Theme shows</th><th>Festival</th></tr></thead>
+        <tbody>
+          <tr><td>23–25 Nov 2026</td><td>Guru Nanak Jayanti <span class="tag done">LIVE</span></td><td>2–10 May</td><td>Mother's Day</td></tr>
+          <tr><td>15–26 Dec 2026</td><td>Christmas</td><td>12–18 May</td><td>Eid al-Adha (Bakrid)</td></tr>
+          <tr><td>27 Dec – 2 Jan</td><td>New Year</td><td>13–21 Jun</td><td>Father's Day</td></tr>
+          <tr><td>10–16 Jan 2027</td><td>Lohri, Sankranti &amp; Pongal</td><td>5–18 Aug</td><td>Raksha Bandhan</td></tr>
+          <tr><td>23–27 Jan</td><td>Republic Day</td><td>13–15 Aug</td><td>Independence Day</td></tr>
+          <tr><td>7–15 Feb</td><td>Valentine's Day</td><td>21–26 Aug</td><td>Janmashtami</td></tr>
+          <tr><td>3–6 Mar</td><td>Maha Shivratri</td><td>28 Aug – 5 Sep</td><td>Ganesh Chaturthi</td></tr>
+          <tr><td>7–11 Mar</td><td>Eid al-Fitr</td><td>7–13 Sep</td><td>Onam</td></tr>
+          <tr><td>12–23 Mar</td><td>Holi</td><td>29 Sep – 10 Oct</td><td>Navratri &amp; Dussehra</td></tr>
+          <tr><td>3–8 Apr</td><td>Ugadi &amp; Gudi Padwa</td><td>14–18 Oct</td><td>Karwa Chauth</td></tr>
+          <tr><td>10–14 Apr</td><td>Baisakhi</td><td>19–29 Oct</td><td>Diwali (from Dhanteras)</td></tr>
+          <tr><td>15–16 Apr</td><td>Ram Navami</td><td>30 Oct – 1 Nov</td><td>Bhai Dooj</td></tr>
+          <tr><td></td><td></td><td>11–15 Nov / 15–26 Dec</td><td>Guru Nanak Jayanti, Christmas 2027</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Dates were checked against Indian festival calendars. Eid dates depend on the moon sighting, and Lohri and Baisakhi are estimates, so these should be confirmed a few days before.</p>
+  </section>
+
+  <!-- ========== HOW ORDERS WORK ========== -->
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">How it works today</p>
+      <h2>From order to delivery</h2>
+      <p class="lede">There is no server or database yet, so orders travel through WhatsApp or SMS, started by a tap from the customer.</p>
+    </div>
+    <div class="flow">
+      <div><span class="who">Customer</span><b>Places the order</b><span>Cart, address, payment method.</span></div>
+      <div><span class="who">Customer</span><b>Taps WhatsApp or SMS</b><span>Order is pre-written to the store's number.</span></div>
+      <div><span class="who">Owner</span><b>Receives the order</b><span>Items, total, name, phone, address.</span></div>
+      <div><span class="who">Owner</span><b>Confirms in one tap</b><span>Link opens that customer's chat with a confirmation.</span></div>
+      <div><span class="who">Owner</span><b>Packs and delivers</b><span>Collects cash or UPI on delivery.</span></div>
+    </div>
+  </section>
+
+  <!-- ========== WORK DONE (PHASES) ========== -->
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Work done</p>
+      <h2>What was built, in order</h2>
+    </div>
+    <ol class="phases">
+      <li class="phase" data-n="1"><h3>Core shopping features</h3><p>Buy Now, Undo after removing an item, Save for later, search suggestions, typo-tolerant search and voice search.</p></li>
+      <li class="phase" data-n="2"><h3>Bigger catalogue</h3><p>Grew from 31 to 71 products, with at least 8 in every category.</p></li>
+      <li class="phase" data-n="3"><h3>Product pages, wishlist and coupons</h3><p>A page and link for every product, wishlist, coupon codes (FIRST10, SAVE100, FREESHIP), Deal of the Day, Recently viewed, price and rating filters, free-delivery progress bar, trust badges, WhatsApp sharing and link previews.</p></li>
+      <li class="phase" data-n="4"><h3>Customer-friendly features</h3><p>Phone bottom menu, Back to top, saved address, My Orders with tracking and Buy again, FAQ section and a WhatsApp chat button.</p></li>
+      <li class="phase" data-n="5"><h3>Smart features for Indian shoppers</h3><p>Mol-bhav bargaining, Hinglish search, festival mode, Budget Basket, "I'm going to…" kits, monthly ration reminder, swipe to discover, savings piggy bank, Easy mode and shared cart links.</p></li>
+      <li class="phase" data-n="6"><h3>Professional redesign</h3><p>Premium navy and gold look, serif headings, line icons instead of emoji in menus, and a new tagline: "Quality you can trust. Prices you'll love."</p></li>
+      <li class="phase" data-n="7"><h3>Homepage polish</h3><p>Offer bar, logo and browser-tab icon, hero product collage, category picture tiles, promo banners, Shop by price, honest badges, curated rows, Show more, fly-to-cart animation and a sticky buy bar on phones.</p></li>
+      <li class="phase" data-n="8"><h3>Go-live preparation</h3><p>"Payment successful" screen (test mode), orders sent to the owner on WhatsApp, product photo support, six policy and contact pages, a Cash-on-Delivery-only switch and a go-live checklist.</p></li>
+      <li class="phase" data-n="9"><h3>Receipts on the customer's own number</h3><p>Receipts by WhatsApp or SMS to whatever number the customer enters, plus an SMS option for customers without WhatsApp. An automatic email receipt feature was also built and tested, then removed at the owner's request.</p></li>
+      <li class="phase" data-n="10"><h3>Handover for future work</h3><p>Project opened in VS Code with the Claude Code extension installed, and a beginner's guide to using it.</p></li>
+      <li class="phase" data-n="11"><h3>Full festival calendar</h3><p>26 festival themes from November 2026 to December 2027, each with its own colours, headline, gift picks and greeting, with dates checked online. Festival pages were made easier to read on warm festival colours.</p></li>
+    </ol>
+  </section>
+
+  <!-- ========== LIMITATIONS & NEXT STEPS ========== -->
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Next steps</p>
+      <h2>What's needed to start selling</h2>
+      <p class="lede">In recommended order. Items marked "owner" need the business's own accounts, documents or decisions.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Step</th><th>Why it matters</th><th>Who</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td>Switch checkout to Cash on Delivery only</td><td>Until real payments are connected, "Payment successful" would mislead customers who pick UPI or card. One setting: <code>ONLINE_PAYMENTS = false</code>.</td><td>Owner (1 minute)</td><td>Free</td></tr>
+          <tr><td>Fill in business details</td><td>Legal name, address, email, GSTIN and grievance officer are expected by Indian e-commerce rules and shown on the policy pages.</td><td>Owner</td><td>Free</td></tr>
+          <tr><td>Legal review of policies</td><td>The six pages are careful drafts, not legal advice.</td><td>Owner + lawyer/CA</td><td>Professional fee</td></tr>
+          <tr><td>Product photos and real prices</td><td>Emoji make the store look like a demo. Photos drop into a folder; the code is ready.</td><td>Owner</td><td>Free if photos are available</td></tr>
+          <tr><td>Put the store online</td><td>Today it only runs on one computer. Netlify gives a free live link; a custom domain is optional.</td><td>Owner (10 minutes)</td><td>Free (domain about ₹800/year)</td></tr>
+          <tr><td>Order database and admin page</td><td>So every order is recorded automatically, even if the customer never taps WhatsApp or SMS.</td><td>Developer + owner's account</td><td>Free tier available</td></tr>
+          <tr><td>Real payments (Razorpay)</td><td>To collect UPI and card payments online.</td><td>Owner KYC, then developer</td><td>About 2% per payment</td></tr>
+          <tr><td>Festival coupon codes</td><td>Festival themes don't give a discount yet. Codes like DIWALI15 can be added in minutes.</td><td>Owner decides the offers</td><td>Free</td></tr>
+          <tr><td>Confirm festival dates</td><td>Eid depends on the moon sighting; Lohri and Baisakhi are estimates. Add 2028 festivals before December 2027.</td><td>Owner</td><td>Free</td></tr>
+          <tr><td>Automatic WhatsApp/SMS receipts</td><td>Sends receipts with no tap needed. Needs a messaging provider and SMS (DLT) registration.</td><td>Owner + developer</td><td>Paise per message</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ========== TESTING & FILES ========== -->
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Quality</p>
+      <h2>Testing and deliverables</h2>
+    </div>
+    <div class="summary">
+      <div class="box">
+        <h3>How it was tested</h3>
+        <ul>
+          <li>Every feature was used in a real browser at phone and desktop sizes, in light and dark mode.</li>
+          <li>Prices, coupons, delivery charges and totals were checked by calculation (for example ₹1,499 + 2 × ₹199 − ₹190 coupon = ₹1,707).</li>
+          <li>WhatsApp and SMS messages were checked for different customer numbers, and for Android and iPhone link formats.</li>
+          <li>Bugs found during testing and fixed included: a picture helper that froze the page, a bargain section missing on shared links, the toast covering the checkout button, and layout issues on small phones.</li>
+        </ul>
+        <p class="note">Not tested: real payments, delivery partner integration, and the store running on a public web address.</p>
+      </div>
+      <div class="box">
+        <h3>Files delivered</h3>
+        <ul>
+          <li><code>store/</code> the complete website (about 4,700 lines of code)</li>
+          <li><code>store/products.js</code> all settings: products, prices, coupons, WhatsApp number, business details</li>
+          <li><code>store/images/</code> folder for product photos, with instructions</li>
+          <li><code>GO-LIVE-CHECKLIST.md</code> steps before launch</li>
+          <li><code>CLAUDE-BEGINNER-GUIDE.md</code> how to keep working on the code in VS Code</li>
+          <li><code>report/</code> this report and its screenshots</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>ShopEasy project report · 23 November 2026</span>
+    <span>Sample names, phone numbers and orders in the screenshots are test data.</span>
+  </div>
+</footer>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About us — ShopEasy</title>
+  <meta name="description" content="ShopEasy is an online store for everyday essentials: electronics, fashion, groceries, home and more, at honest prices.">
+  <meta name="theme-color" content="#0f1b2d">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page">
+  <div id="siteTop"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="page-kicker">About us</p>
+      <h1>Quality you can trust. <span>Prices you’ll love.</span></h1>
+    </div>
+  </section>
+
+  <main class="container page-main">
+    <article class="page-card">
+      <h2>Who we are</h2>
+      <p><span data-info="brand"></span> is an online store for the things Indian homes use every day: electronics, fashion, groceries, home and kitchen, beauty, books, sports and toys. We bring them together in one place, at fair prices, with delivery to your door.</p>
+
+      <h2>What we stand for</h2>
+      <div class="value-grid">
+        <div><b>Honest prices</b><p>The price you see is the price you pay, inclusive of taxes. Discounts are shown against the MRP so you always know what you save.</p></div>
+        <div><b>Quality checked</b><p>Every order is checked before it leaves us, and if something isn’t right, our returns policy has you covered.</p></div>
+        <div><b>Real help</b><p>Talk to a real person on WhatsApp for questions about products, orders or returns.</p></div>
+        <div><b>Made for families</b><p>Search in Hinglish, bargain on prices, switch to Easy mode for bigger text and Hindi labels, and share a cart with family.</p></div>
+      </div>
+
+      <h2>How shopping with us works</h2>
+      <ul>
+        <li>Free delivery on orders above <span data-info="freeAbove"></span>. Below that, delivery is <span data-info="deliveryFee"></span>.</li>
+        <li>Pay by UPI, card or Cash on Delivery.</li>
+        <li>Track every order from <a href="index.html?open=orders">My Orders</a>.</li>
+        <li>Easy returns. See our <a href="returns.html">Returns &amp; refunds policy</a>.</li>
+      </ul>
+
+      <h2>Business details</h2>
+      <dl class="info-list">
+        <div><dt>Business name</dt><dd><span data-info="legalName"></span></dd></div>
+        <div><dt>Address</dt><dd><span data-info="address"></span></dd></div>
+        <div data-if="gstin"><dt>GSTIN</dt><dd><span data-info="gstin"></span></dd></div>
+        <div><dt>Contact</dt><dd>WhatsApp <span data-info="whatsapp"></span> · <a data-info="email"></a></dd></div>
+      </dl>
+
+      <div class="page-cta">
+        <a class="btn btn-primary" href="index.html">Start shopping</a>
+        <a class="btn btn-outline" href="contact.html">Contact us</a>
+      </div>
+    </article>
+  </main>
+
+  <div id="siteFooter"></div>
+  <script src="products.js"></script>
+  <script src="pages.js"></script>
+</body>
+</html>

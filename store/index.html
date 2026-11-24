@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopEasy — Quality you can trust. Prices you’ll love.</title>
+  <meta name="description" content="Shop electronics, fashion, groceries, books and more at great prices. Free delivery above ₹999, Cash on Delivery and easy returns.">
+  <meta name="theme-color" content="#0f1b2d">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230f1b2d%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2242%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2228%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%20fill%3D%22%23c9a050%22%3ESE%3C%2Ftext%3E%3C%2Fsvg%3E">
+  <!-- How the link looks when shared on WhatsApp, Facebook, X, etc. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ShopEasy">
+  <meta property="og:title" content="ShopEasy — Quality you can trust. Prices you’ll love.">
+  <meta property="og:description" content="Electronics, fashion, groceries and more. Free delivery above ₹999. Use code FIRST10 for 10% off.">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== TOP OFFER BAR ===== -->
+  <div class="topbar" role="note">
+    <div class="container topbar-inner">
+      <span>Free delivery above ₹999</span>
+      <span class="dot hide-mobile">Cash on Delivery</span>
+      <span class="dot hide-mobile">Easy returns</span>
+      <span class="dot">Use <b>FIRST10</b> for 10% off</span>
+    </div>
+  </div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="logo" id="logo" aria-label="ShopEasy home">
+        <span class="logo-mark" aria-hidden="true">SE</span><span class="logo-word">Shop<span>Easy</span></span>
+      </a>
+      <div class="search" id="searchBox">
+        <input type="search" id="search" placeholder="Search products..." aria-label="Search products"
+          autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggestions">
+        <button type="button" class="mic-btn" id="micBtn" aria-label="Search by voice" title="Search by voice" data-icon="mic" hidden></button>
+        <ul class="suggestions" id="suggestions" role="listbox" aria-label="Search suggestions" hidden></ul>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn hide-mobile" id="ordersBtn" aria-label="My orders" title="My orders" data-icon="box"></button>
+        <button class="icon-btn wish-btn hide-mobile" id="wishBtn" aria-label="Open wishlist" title="Wishlist" data-icon="heart"><span class="badge mini" id="wishCount" hidden>0</span></button>
+        <button class="icon-btn easy-btn" id="easyToggle" aria-pressed="false" aria-label="Easy mode: bigger text, Hindi labels, read aloud" title="Easy mode (आसान)"><span class="aa">Aa</span></button>
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"></button>
+        <button class="cart-btn" id="cartBtn" aria-label="Open cart" data-icon="cart">
+          <span class="cart-label" data-hi="कार्ट">Cart</span>
+          <span class="badge" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <p class="festival-tag" id="festivalTag" hidden></p>
+        <h1 id="heroTitle">Quality you can trust. <span>Prices you’ll love.</span></h1>
+        <p id="heroText">Electronics, fashion, groceries and more, with free delivery above ₹999 and easy returns.</p>
+        <button class="btn hero-cta" id="heroShop">Shop the collection →</button>
+        <p class="hero-offer">🎁 New here? Use code <b>FIRST10</b> for 10% off your order.</p>
+      </div>
+      <!-- Floating collage of popular products (filled in by app.js) -->
+      <div class="hero-collage" id="heroCollage" aria-label="Popular picks"></div>
+    </div>
+  </section>
+
+  <!-- ===== WHY SHOP WITH US ===== -->
+  <section class="container trust" aria-label="Why shop with ShopEasy">
+    <div><span data-icon="truck"></span><b>Free delivery</b><small>On orders above ₹999</small></div>
+    <div><span data-icon="returns"></span><b>Easy returns</b><small>Hassle-free return policy</small></div>
+    <div><span data-icon="cash"></span><b>Cash on Delivery</b><small>Pay when it arrives</small></div>
+    <div><span data-icon="phone"></span><b>Pay your way</b><small>UPI, card or cash</small></div>
+  </section>
+
+  <!-- ===== SHOP ===== -->
+  <main class="container shop">
+    <!-- Monthly ration reminder (filled in by extras.js) -->
+    <div class="restock" id="restock" role="status" hidden></div>
+
+    <!-- Festival gift picks (only during a festival) -->
+    <section class="recent festival-picks" id="festivalPicks" hidden>
+      <div class="section-head"><h2 id="festivalPicksTitle">Festival picks</h2></div>
+      <div class="strip" id="festivalStrip"></div>
+    </section>
+
+    <!-- Shop by category: picture tiles (filled in by app.js) -->
+    <div class="section-head home-only"><h2>Shop by category</h2></div>
+    <div class="categories" id="categories" role="tablist" aria-label="Product categories"></div>
+
+    <!-- Promo banners -->
+    <section class="promos home-only" id="promos" aria-label="Offers">
+      <button class="promo promo-navy" data-promo="discount">
+        <span class="promo-text"><small>Limited time</small><b>Biggest discounts</b><span>Up to 50% off →</span></span>
+        <span class="promo-art" aria-hidden="true">🏷️</span>
+      </button>
+      <button class="promo promo-green" data-promo="grocery">
+        <span class="promo-text"><small>Fresh &amp; fast</small><b>Groceries in 1–2 days</b><span>Shop groceries →</span></span>
+        <span class="promo-art" aria-hidden="true">🥭</span>
+      </button>
+      <button class="promo promo-gold" data-promo="toprated">
+        <span class="promo-text"><small>Loved by shoppers</small><b>Top rated picks</b><span>Rated 4★ &amp; up →</span></span>
+        <span class="promo-art" aria-hidden="true">⭐</span>
+      </button>
+    </section>
+
+    <a class="deal" id="deal" href="#"></a>
+
+    <!-- Shop by price -->
+    <section class="home-only" aria-label="Shop by price">
+      <div class="section-head"><h2>Shop by price</h2></div>
+      <div class="price-tiles" id="priceTiles">
+        <button class="price-tile" data-price="0-200"><small>Under</small><b>₹199</b></button>
+        <button class="price-tile" data-price="0-500"><small>Under</small><b>₹499</b></button>
+        <button class="price-tile" data-price="0-1000"><small>Under</small><b>₹999</b></button>
+        <button class="price-tile premium" data-price="2000-"><small>Premium</small><b>₹2,000+</b></button>
+      </div>
+    </section>
+
+    <!-- Smart shopping tools -->
+    <section class="tools" id="tools" aria-label="Smart shopping tools">
+      <div class="tool-buttons">
+        <button class="tool-btn" id="budgetBtn"><span>🧺</span><b>Budget Basket</b><small>We fill a cart to fit your budget</small></button>
+        <button class="tool-btn" id="swipeBtn"><span>👆</span><b>Swipe to discover</b><small>Right to love it, left to skip</small></button>
+      </div>
+      <div class="kits">
+        <span class="kits-label">I'm going to…</span>
+        <div class="kit-chips" id="kitChips"></div>
+      </div>
+    </section>
+
+    <section class="recent" id="recentSection" hidden>
+      <div class="section-head">
+        <h2>Recently viewed</h2>
+        <button class="link-btn" id="clearRecent">Clear</button>
+      </div>
+      <div class="strip" id="recentStrip"></div>
+    </section>
+
+    <!-- Curated rows: New arrivals, Top rated… (filled in by app.js) -->
+    <div id="homeSections" class="home-sections"></div>
+
+    <div class="section-head" id="allProductsHead"><h2 id="allProductsTitle">All products</h2></div>
+    <div class="toolbar">
+      <p id="resultCount"></p>
+      <div class="toolbar-controls">
+        <label class="sort">Price
+          <select id="priceFilter">
+            <option value="any">Any price</option>
+            <option value="0-200">Under ₹200</option>
+            <option value="0-500">Under ₹500</option>
+            <option value="0-1000">Under ₹1,000</option>
+            <option value="500-2000">₹500 – ₹2,000</option>
+            <option value="2000-">Above ₹2,000</option>
+          </select>
+        </label>
+        <label class="check"><input type="checkbox" id="ratingFilter"> 4★ &amp; up</label>
+        <label class="sort">Sort by
+          <select id="sort">
+            <option value="featured">Featured</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+            <option value="discount">Biggest Discount</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="grid" id="productGrid"></div>
+    <div class="load-more-row" id="loadMoreRow" hidden>
+      <p class="hint" id="loadMoreInfo"></p>
+      <button class="btn btn-outline" id="loadMore">Show more products</button>
+    </div>
+    <div class="empty" id="noResults" hidden>
+      <p>No products match your search or filters.</p>
+      <button class="btn btn-outline" id="clearFilters">Clear search &amp; filters</button>
+    </div>
+  </main>
+
+  <!-- ===== FAQ (edit the questions and answers to match your policies) ===== -->
+  <section class="container faq" id="faq" aria-labelledby="faqTitle">
+    <h2 id="faqTitle">Frequently asked questions</h2>
+    <details>
+      <summary>How long does delivery take?</summary>
+      <p>Groceries arrive in 1–2 days. Most other items arrive in 3–5 days. Every product page shows the expected delivery date before you buy.</p>
+    </details>
+    <details>
+      <summary>Is delivery free?</summary>
+      <p>Yes, on orders above ₹999. Below that, delivery costs ₹49. You can also use the coupon <b>FREESHIP</b> for free delivery on any order.</p>
+    </details>
+    <details>
+      <summary>Can I pay Cash on Delivery?</summary>
+      <p>Yes. Choose “Cash on Delivery” at checkout and pay by cash or UPI when your order arrives.</p>
+    </details>
+    <details>
+      <summary>How do I return an item?</summary>
+      <p>Most items can be returned within 7 days of delivery (fashion within 10 days). Opened groceries can't be returned. Message us on WhatsApp with your order ID and we'll arrange a pickup.</p>
+    </details>
+    <details>
+      <summary>Is it safe to pay online?</summary>
+      <p>You can pay by UPI, card or Cash on Delivery. We never store your card or UPI details on this site.</p>
+    </details>
+    <details>
+      <summary>How can I track my order?</summary>
+      <p>Tap <b>📦 My Orders</b> to see every order you've placed and where it is: Ordered, Packed, Shipped, Out for delivery or Delivered.</p>
+    </details>
+    <details>
+      <summary>How do I use a coupon?</summary>
+      <p>Open your cart, type the code in the Coupons box (or tap “Apply” next to one of the listed coupons), and the discount is taken off your total straight away.</p>
+    </details>
+    <details>
+      <summary>Can I talk to someone?</summary>
+      <p>Yes! Tap <b>Ask ShopEasy</b> at the bottom right to chat with our shopping assistant by text or voice, or choose <b>Talk to a person</b> there to message our team on WhatsApp.</p>
+    </details>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-cols" aria-label="Footer">
+        <div><h4>Shop</h4><a href="#faq" id="footerFaq">FAQ</a><button id="footerOrders">My Orders</button><a href="about.html">About us</a></div>
+        <div><h4>Help</h4><a href="contact.html">Contact us</a><a href="shipping.html">Shipping policy</a><a href="returns.html">Returns &amp; refunds</a></div>
+        <div><h4>Legal</h4><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of use</a></div>
+        <div><h4>Talk to us</h4><button id="footerChat">Chat on WhatsApp</button><span id="footerHours"></span></div>
+      </nav>
+      <p class="footer-legal">© <span id="year"></span> ShopEasy<span id="footerLegal"></span>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING BUTTONS ===== -->
+  <div class="floaters">
+    <button class="float-btn to-top" id="toTop" aria-label="Back to top" title="Back to top" hidden>↑</button>
+    <button class="float-btn chat" id="chatBtn" aria-label="Open the ShopEasy shopping assistant" aria-expanded="false" aria-controls="assistant" data-icon="chat"><span>Ask ShopEasy</span><i class="online-dot" aria-hidden="true"></i></button>
+  </div>
+
+  <!-- ===== PHONE BOTTOM MENU ===== -->
+  <nav class="bottom-nav" aria-label="Quick menu">
+    <button id="navHome"><span data-icon="home"></span><b data-hi="होम">Home</b></button>
+    <button id="navSearch"><span data-icon="search"></span><b data-hi="खोजें">Search</b></button>
+    <button id="navOrders"><span data-icon="box"></span><b data-hi="ऑर्डर">Orders</b></button>
+    <button id="navWish"><span data-icon="heart"><i class="nav-badge" id="navWishCount" hidden>0</i></span><b data-hi="पसंद">Wishlist</b></button>
+    <button id="navCart"><span data-icon="cart"><i class="nav-badge" id="navCartCount" hidden>0</i></span><b data-hi="कार्ट">Cart</b></button>
+  </nav>
+
+  <!-- ===== CART DRAWER ===== -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="drawer-head">
+      <h2>Your Cart</h2>
+      <button class="icon-btn" id="closeCart" aria-label="Close cart">✕</button>
+    </div>
+    <div class="drawer-body">
+      <div class="cart-items" id="cartItems"></div>
+      <div class="share-cart" id="shareCartRow"><button class="link-btn" id="shareCartBtn">🔗 Share this cart with family or friends</button></div>
+      <div class="cart-empty" id="cartEmpty">
+        <div class="big">🛒</div>
+        <p>Your cart is empty.</p>
+        <button class="btn btn-outline" id="continueShopping">Continue shopping</button>
+      </div>
+      <section class="coupons" id="couponSection">
+        <h3>🏷️ Coupons</h3>
+        <form class="coupon-form" id="couponForm">
+          <input id="couponInput" placeholder="Enter coupon code" aria-label="Coupon code" autocomplete="off" spellcheck="false">
+          <button class="btn btn-outline" type="submit">Apply</button>
+        </form>
+        <small class="coupon-msg" id="couponMsg" role="status"></small>
+        <div class="coupon-applied" id="couponApplied" hidden></div>
+        <div class="coupon-list" id="couponList"></div>
+      </section>
+      <section class="saved" id="savedSection" hidden>
+        <h3>Saved for later (<span id="savedCount">0</span>)</h3>
+        <div id="savedItems"></div>
+      </section>
+    </div>
+    <div class="cart-summary" id="cartSummary">
+      <div class="line"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+      <div class="line"><span>You save</span><span class="save" id="savings">₹0</span></div>
+      <div class="line" id="discountLine" hidden><span id="discountLabel">Coupon</span><span class="save" id="discount">₹0</span></div>
+      <div class="line"><span>Delivery</span><span id="delivery">₹0</span></div>
+      <p class="hint" id="deliveryHint"></p>
+      <div class="progress" aria-hidden="true"><span id="deliveryBar"></span></div>
+      <div class="line total"><span>Total</span><span id="total">₹0</span></div>
+      <button class="btn btn-primary full" id="checkoutBtn" data-hi="ऑर्डर करें">Proceed to Checkout</button>
+    </div>
+  </aside>
+
+  <!-- ===== WISHLIST DRAWER ===== -->
+  <aside class="drawer" id="wishDrawer" aria-label="Wishlist">
+    <div class="drawer-head">
+      <h2>Your Wishlist</h2>
+      <button class="icon-btn" id="closeWish" aria-label="Close wishlist">✕</button>
+    </div>
+    <div class="drawer-body">
+      <div class="cart-items" id="wishItems"></div>
+      <div class="cart-empty" id="wishEmpty">
+        <div class="big">🤍</div>
+        <p>Your wishlist is empty.</p>
+        <p class="hint">Tap the 🤍 on any product to save it here.</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== MY ORDERS DRAWER ===== -->
+  <aside class="drawer" id="ordersDrawer" aria-label="My orders">
+    <div class="drawer-head">
+      <h2>My Orders</h2>
+      <button class="icon-btn" id="closeOrders" aria-label="Close my orders">✕</button>
+    </div>
+    <div class="drawer-body">
+      <div class="orders" id="ordersList"></div>
+      <div class="cart-empty" id="ordersEmpty">
+        <div class="big">📦</div>
+        <p>You haven't placed any orders yet.</p>
+        <button class="btn btn-outline" id="ordersShop">Start shopping</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== PRODUCT PAGE ===== -->
+  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="pdName">
+    <div class="modal-box pd-box">
+      <div class="drawer-head">
+        <span class="crumb" id="pdCrumb"></span>
+        <button class="icon-btn" id="closeProduct" aria-label="Close product">✕</button>
+      </div>
+      <div id="pdBody"></div>
+    </div>
+  </div>
+
+  <!-- ===== TOOL WINDOW (Budget Basket, kits, swipe, shared cart) ===== -->
+  <div class="modal" id="toolModal" role="dialog" aria-modal="true" aria-labelledby="toolTitle">
+    <div class="modal-box tool-box">
+      <div class="drawer-head">
+        <h2 id="toolTitle"></h2>
+        <button class="icon-btn" id="closeTool" aria-label="Close">✕</button>
+      </div>
+      <div id="toolBody"></div>
+    </div>
+  </div>
+
+  <!-- ===== CHECKOUT ===== -->
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+    <div class="modal-box">
+      <div class="drawer-head">
+        <h2 id="checkoutTitle">Checkout</h2>
+        <button class="icon-btn" id="closeCheckout" aria-label="Close checkout">✕</button>
+      </div>
+
+      <form id="checkoutForm" novalidate>
+        <h3>1. Delivery address</h3>
+        <p class="saved-address" id="savedAddressNote" hidden>✅ Filled in from your last order. <button type="button" class="link-btn" id="forgetAddress">Forget this address</button></p>
+        <div class="row">
+          <div class="field"><label for="fullName">Full name</label><input id="fullName" autocomplete="name"><small></small></div>
+          <div class="field"><label for="phone">Mobile number</label><input id="phone" inputmode="numeric" maxlength="10" autocomplete="tel"><small></small></div>
+        </div>
+        <div class="field"><label for="email">Email <span class="optional">(optional, we’ll email your receipt)</span></label><input id="email" type="email" inputmode="email" autocomplete="email" placeholder="name@gmail.com"><small></small></div>        <div class="field"><label for="address">Address</label><input id="address" autocomplete="street-address"><small></small></div>
+        <div class="row">
+          <div class="field"><label for="city">City</label><input id="city" autocomplete="address-level2"><small></small></div>
+          <div class="field"><label for="pin">PIN code</label><input id="pin" inputmode="numeric" maxlength="6" autocomplete="postal-code"><small></small></div>
+        </div>
+
+        <label class="check"><input type="checkbox" id="rememberAddress" checked> Save this address on this device for next time</label>
+
+        <h3>2. Payment method</h3>
+        <div class="pay-options">
+          <label class="pay-option"><input type="radio" name="pay" value="upi" checked><span>📲 UPI</span></label>
+          <label class="pay-option"><input type="radio" name="pay" value="card"><span>💳 Card</span></label>
+          <label class="pay-option"><input type="radio" name="pay" value="cod"><span>💵 Cash on Delivery</span></label>
+        </div>
+
+        <div class="pay-panel" data-pay="upi">
+          <div class="field"><label for="upiId">UPI ID</label><input id="upiId" placeholder="name@bank"><small></small></div>
+        </div>
+        <div class="pay-panel" data-pay="card" hidden>
+          <div class="field"><label for="cardNumber">Card number</label><input id="cardNumber" inputmode="numeric" placeholder="1234 5678 9012 3456" maxlength="19"><small></small></div>
+          <div class="row">
+            <div class="field"><label for="cardExpiry">Expiry (MM/YY)</label><input id="cardExpiry" placeholder="MM/YY" maxlength="5"><small></small></div>
+            <div class="field"><label for="cardCvv">CVV</label><input id="cardCvv" inputmode="numeric" maxlength="4" type="password"><small></small></div>
+          </div>
+        </div>
+        <div class="pay-panel" data-pay="cod" hidden>
+          <p class="hint">Pay with cash or UPI when your order arrives.</p>
+        </div>
+
+        <p class="demo-note">Test mode: online payments aren't connected yet, so no money is taken from your account.</p>
+
+        <details class="gift-box" id="giftBox">
+          <summary>🎁 Add a gift message (free)</summary>
+          <textarea id="giftMessage" maxlength="200" rows="3" placeholder="Happy Birthday! Lots of love…" aria-label="Gift message"></textarea>
+          <small class="hint">Sent with your parcel as a card. Up to 200 characters.</small>
+        </details>
+
+        <h3>3. Order summary</h3>
+        <div class="checkout-items" id="checkoutList"></div>
+
+        <div class="order-total"><span>Amount to pay</span><strong id="payTotal">₹0</strong></div>
+        <button type="submit" class="btn btn-primary full" id="placeOrder" data-hi="ऑर्डर पक्का करें">Place Order</button>
+      </form>
+
+      <div class="success" id="orderSuccess" hidden>
+        <div class="success-badge" aria-hidden="true">✓</div>
+        <h3 id="successTitle">Payment successful</h3>
+        <p class="hint" id="orderMsg"></p>
+        <div class="receipt">
+          <div class="line"><span>Order ID</span><strong id="orderId"></strong></div>
+          <div class="line"><span id="receiptAmountLabel">Amount paid</span><strong id="receiptAmount"></strong></div>
+          <div class="line"><span>Payment</span><strong id="receiptMethod"></strong></div>
+          <div class="line"><span>Arriving by</span><strong id="receiptEta"></strong></div>
+        </div>
+        <p class="order-saved" id="orderSaved" hidden></p>
+        <p class="email-status" id="emailStatus" role="status" hidden></p>        <a class="btn btn-wa full" id="myCopyBtn" href="#" target="_blank" rel="noopener" data-icon="chat">Get order details on my WhatsApp</a>
+        <small class="hint" id="myCopyHint"></small>
+        <a class="sms-link" id="myCopySms" href="#">or get my receipt by SMS</a>
+        <a class="btn btn-outline full" id="waOrderBtn" href="#" target="_blank" rel="noopener" data-icon="chat">Send order to ShopEasy on WhatsApp</a>
+        <small class="hint">Sends your order details to our team so we can confirm it quickly.</small>
+        <a class="sms-link" id="orderSmsBtn" href="#">No WhatsApp? Send order by SMS instead</a>
+        <div class="success-actions">
+          <button class="btn btn-outline" id="viewOrdersBtn">📦 Track my order</button>
+          <button class="btn btn-primary" id="doneBtn">Continue shopping</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+  <script src="extras.js"></script>
+
+  <!-- ===== SHOPPING ASSISTANT (chat by text or voice) ===== -->
+  <div class="as-hint" id="asHint" role="status" hidden>
+    <button class="as-hint-close" id="asHintClose" aria-label="Dismiss">✕</button>
+    <b>👋 Need help?</b>
+    <span>Ask me about products, or order by text or voice.</span>
+  </div>
+  <section class="assistant" id="assistant" role="dialog" aria-modal="false" aria-labelledby="asTitle" hidden>
+    <header class="as-head">
+      <span class="as-avatar" aria-hidden="true">SE<i></i></span>
+      <div class="as-title"><b id="asTitle">ShopEasy Assistant</b><small>Online · replies instantly</small></div>
+      <button class="as-head-btn" id="asSpeak" aria-pressed="false" title="Read replies aloud" aria-label="Read replies aloud"></button>
+      <button class="as-head-btn" id="asReset" title="Start a new chat" aria-label="Start a new chat"></button>
+      <button class="as-head-btn" id="asClose" title="Close" aria-label="Close assistant"></button>
+    </header>
+    <div class="as-log" id="asLog" aria-live="polite"></div>
+    <form class="as-input" id="asForm" autocomplete="off">
+      <button type="button" class="as-mic" id="asMic" aria-label="Speak your message" title="Speak"></button>
+      <input id="asText" type="text" placeholder="Ask about a product, or say “add 2 mangoes”" aria-label="Message the assistant" maxlength="200">
+      <button type="submit" class="as-send" id="asSend" aria-label="Send"></button>
+    </form>
+    <p class="as-note">Shopping assistant · for anything else, choose “Talk to a person”</p>
+  </section>
+  <script src="assistant.js"></script>
+</body>
+</html>

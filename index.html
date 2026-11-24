@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Studio — Demo Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">Nova<span>Studio</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#features">Features</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="container hero-inner">
+      <div class="hero-text reveal">
+        <span class="badge">✨ Built with Claude</span>
+        <h1>Beautiful websites, <span class="gradient-text">made simple.</span></h1>
+        <p>This is a demo site showing what we can build together — navigation, animations, dark mode, galleries, pricing tables, forms and more.</p>
+        <div class="hero-buttons">
+          <a href="#features" class="btn btn-primary">Explore Features</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+        <div class="stats">
+          <div><strong class="counter" data-target="120">0</strong><span>Projects</span></div>
+          <div><strong class="counter" data-target="98">0</strong><span>% Happy clients</span></div>
+          <div><strong class="counter" data-target="24">0</strong><span>Awards</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <div class="blob"></div>
+        <div class="mock-card">
+          <div class="mock-dots"><i></i><i></i><i></i></div>
+          <div class="mock-line w80"></div>
+          <div class="mock-line w60"></div>
+          <div class="mock-grid"><div></div><div></div><div></div></div>
+          <div class="mock-line w40"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Features in this demo</h2>
+        <p>Each of these can be customized, removed, or expanded for your real website.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal"><div class="icon">📱</div><h3>Responsive Design</h3><p>Looks great on phones, tablets and desktops. Try resizing your window.</p></div>
+        <div class="feature-card reveal"><div class="icon">🌗</div><h3>Dark Mode</h3><p>Click the moon icon at the top to switch themes. Your choice is remembered.</p></div>
+        <div class="feature-card reveal"><div class="icon">🎞️</div><h3>Scroll Animations</h3><p>Sections fade in smoothly as you scroll down the page.</p></div>
+        <div class="feature-card reveal"><div class="icon">🖼️</div><h3>Image Gallery</h3><p>Filterable gallery with a click-to-enlarge lightbox.</p></div>
+        <div class="feature-card reveal"><div class="icon">💳</div><h3>Pricing Table</h3><p>Monthly / yearly toggle that updates prices instantly.</p></div>
+        <div class="feature-card reveal"><div class="icon">✉️</div><h3>Contact Form</h3><p>Form with validation and a success message.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="section alt" id="gallery">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Our Work</h2>
+        <p>Click a filter, then click any image to enlarge it.</p>
+      </div>
+      <div class="filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="web">Web</button>
+        <button class="filter" data-filter="brand">Branding</button>
+        <button class="filter" data-filter="photo">Photography</button>
+      </div>
+      <div class="gallery-grid" id="gallery-grid">
+        <figure class="g-item" data-cat="web"><img src="https://picsum.photos/id/1/600/400" alt="Laptop workspace"><figcaption>Web App</figcaption></figure>
+        <figure class="g-item" data-cat="photo"><img src="https://picsum.photos/id/10/600/400" alt="Forest landscape"><figcaption>Nature Shoot</figcaption></figure>
+        <figure class="g-item" data-cat="brand"><img src="https://picsum.photos/id/20/600/400" alt="Desk items"><figcaption>Brand Kit</figcaption></figure>
+        <figure class="g-item" data-cat="web"><img src="https://picsum.photos/id/180/600/400" alt="Laptop on desk"><figcaption>Landing Page</figcaption></figure>
+        <figure class="g-item" data-cat="photo"><img src="https://picsum.photos/id/29/600/400" alt="Mountains"><figcaption>Mountain Series</figcaption></figure>
+        <figure class="g-item" data-cat="brand"><img src="https://picsum.photos/id/96/600/400" alt="Abstract design"><figcaption>Logo Design</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-head reveal"><h2>What clients say</h2><p>An auto-rotating testimonial slider.</p></div>
+      <div class="slider reveal">
+        <div class="slide active"><p>“They turned our idea into a stunning website in days. Couldn't be happier!”</p><h4>— Priya S., Café Owner</h4></div>
+        <div class="slide"><p>“Fast, clean and modern. Our bookings doubled after the redesign.”</p><h4>— Arjun M., Fitness Coach</h4></div>
+        <div class="slide"><p>“The dark mode and mobile design are perfect. Highly recommended.”</p><h4>— Sara K., Photographer</h4></div>
+        <div class="dots" id="dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="section alt" id="pricing">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Simple Pricing</h2>
+        <p>Toggle between monthly and yearly billing.</p>
+      </div>
+      <div class="billing-toggle">
+        <span>Monthly</span>
+        <label class="switch"><input type="checkbox" id="billingSwitch"><span class="slider-round"></span></label>
+        <span>Yearly <em>(save 20%)</em></span>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card reveal">
+          <h3>Starter</h3>
+          <div class="price"><span class="amount" data-monthly="9" data-yearly="7">9</span><small>/mo</small></div>
+          <ul><li>✔ 1 Website</li><li>✔ 5 Pages</li><li>✔ Email support</li></ul>
+          <a href="#contact" class="btn btn-outline">Choose</a>
+        </div>
+        <div class="price-card popular reveal">
+          <span class="tag">Most Popular</span>
+          <h3>Pro</h3>
+          <div class="price"><span class="amount" data-monthly="29" data-yearly="23">29</span><small>/mo</small></div>
+          <ul><li>✔ 5 Websites</li><li>✔ Unlimited pages</li><li>✔ Priority support</li><li>✔ Custom domain</li></ul>
+          <a href="#contact" class="btn btn-primary">Choose</a>
+        </div>
+        <div class="price-card reveal">
+          <h3>Business</h3>
+          <div class="price"><span class="amount" data-monthly="79" data-yearly="63">79</span><small>/mo</small></div>
+          <ul><li>✔ Unlimited websites</li><li>✔ Team access</li><li>✔ 24/7 support</li></ul>
+          <a href="#contact" class="btn btn-outline">Choose</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section" id="faq">
+    <div class="container narrow">
+      <div class="section-head reveal"><h2>FAQ</h2><p>Click a question to expand the answer.</p></div>
+      <div class="faq-item reveal"><button class="faq-q">How long does it take to build a site? <span>+</span></button><div class="faq-a"><p>A simple site like this can be built in minutes with Claude. Bigger projects take longer depending on features.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Can I change the colors and text? <span>+</span></button><div class="faq-a"><p>Absolutely — just ask Claude, e.g. "make the theme green" or "change the headline".</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Can I put the site online? <span>+</span></button><div class="faq-a"><p>Yes. It can be hosted for free on services like Netlify, Vercel or GitHub Pages.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section alt" id="contact">
+    <div class="container narrow">
+      <div class="section-head reveal"><h2>Contact Us</h2><p>Try submitting the form empty to see validation.</p></div>
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <div class="row">
+          <div class="field"><label for="name">Name</label><input id="name" type="text" placeholder="Your name" required><small class="error"></small></div>
+          <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="you@example.com" required><small class="error"></small></div>
+        </div>
+        <div class="field"><label for="message">Message</label><textarea id="message" rows="5" placeholder="Tell us about your project..." required></textarea><small class="error"></small></div>
+        <button type="submit" class="btn btn-primary full">Send Message</button>
+        <p class="success" id="formSuccess">✅ Thanks! Your message was sent (demo only — nothing is actually sent).</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#home" class="logo">Nova<span>Studio</span></a>
+      <p>© <span id="year"></span> Nova Studio. Demo website built with Claude.</p>
+      <div class="socials"><a href="#" aria-label="Twitter">𝕏</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="LinkedIn">in</a></div>
+    </div>
+  </footer>
+
+  <!-- Lightbox & back-to-top -->
+  <div class="lightbox" id="lightbox"><button class="close" aria-label="Close">×</button><img id="lightboxImg" alt=""></div>
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
